@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+
+	<link href="https://cdn.bootcss.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet">
+	<script src="https://cdn.bootcss.com/vue/2.5.17-beta.0/vue.min.js"></script>
+	<link href="https://cdn.jsdelivr.net/npm/animate.css@3.5.1" rel="stylesheet" type="text/css">
+</head>
+<body>
+	<div id="app">
+		<div class="col-md-6">
+			<div class="input-group">
+				<input type="text" class="form-control" v-model='content' autofocus>
+				<input type="button" class="btn btn-default ml-2" value="submit" @click='add'>
+			</div>
+		</div>
+		<li v-for='item in todoList'>{{item}}</li>
+		<transition
+		name="custom-classes-transition"
+		enter-active-class="animated tada"
+		leave-active-class="animated bounceOutRight"
+		>
+		<img v-if="show" src="./logo@3x.png">干的好！
+		</transition>
+	</div>
+
+
+	<script type="text/javascript">
+		var vm= new Vue({
+			el: '#app',
+			data: {
+				todoList:[],
+				content:'',
+				show: true
+			},
+			methods:{
+				add: function () {
+					if(this.content==''){
+						alert('请输入内容')
+					}else{
+						this.todoList.push(this.content)
+						this.content=''
+					}
+					this.show=!this.show;
+				}
+			}
+		})
+	</script>
+</body>
+</html>
